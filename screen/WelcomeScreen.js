@@ -6,7 +6,7 @@ import Colors from "../constants/color";
 
 import CameraScanner from "../components/CameraScanner";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = (props) => {
   const [scanClick, setScanClick] = useState(false);
   const [scannedData, setScannedData] = useState("");
 
@@ -19,14 +19,15 @@ const WelcomeScreen = () => {
     setScannedData("");
   };
 
-  const scanDataHandler = (data) => {
+  const fetchDataFromScanner = (data) => {
     setScannedData(data);
+    props.scannedDataHandler(data);
   };
 
   return (
     <View style={styles.screen}>
       <Text style={styles.title}>Welcome Technician:1</Text>
-      {scanClick ? <CameraScanner scanDataHandler={scanDataHandler} /> : null}
+      {scanClick ? <CameraScanner onScanData={fetchDataFromScanner} /> : null}
       <Card style={styles.cardContainer}>
         <Text> Scanner </Text>
         <View style={styles.buttonContainer}>
@@ -46,17 +47,6 @@ const WelcomeScreen = () => {
           </View>
         </View>
       </Card>
-      {/* displaying a card if extracted data from scanner exists */}
-      {scannedData ? (
-        <Card style={styles.cardContainer}>
-          <Text> {scannedData} </Text>
-          <Button
-            title="Proceed"
-            color="red"
-            onPress={volunteerDisplayHandler}
-          />
-        </Card>
-      ) : null}
     </View>
   );
 };
@@ -85,15 +75,6 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "40%",
-  },
-  cameraContainer: {
-    width: 600,
-    maxWidth: "80%",
-    alignItems: "center",
-  },
-  camera: {
-    width: 800,
-    height: 400,
   },
 });
 

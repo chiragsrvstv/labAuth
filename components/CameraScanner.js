@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { Card, ListItem, Icon } from 'react-native-elements'
-
+import { Card, ListItem, Icon } from "react-native-elements";
 
 import { BarCodeScanner } from "expo-barcode-scanner";
 
@@ -19,7 +18,7 @@ const CameraScanner = (props) => {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    props.scanDataHandler(data);
+    props.onScanData(data);
     // imporve security here by validationg scanned data.
   };
 
@@ -31,22 +30,27 @@ const CameraScanner = (props) => {
   }
 
   return (
-    <Card title={"Camera"}containerStyle={{width: "100%", height: "50%"}}>
+    <View style={styles.screen}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={styles.camera}
       />
-    </Card>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  camera: {
+  screen: {
     flex: 1,
-    padding: 100,
+    alignItems: "center",
     width: "100%",
-    height: "100%",
-    alignItems: "center"
+  },
+  camera: {
+    padding: 150,
+    margin: 5,
+    width: "100%",
+    height: "90%",
+    alignItems: "center",
   },
 });
 export default CameraScanner;
