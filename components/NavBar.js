@@ -18,8 +18,9 @@ const NavBar = (props) => {
         }
 
         )
-
     }
+
+    
 
   return (
     <View style={styles.screen}>
@@ -31,7 +32,9 @@ const NavBar = (props) => {
 
       <View>
         <Button title="Sign Out" color="red" onPress={onLogout} />
+        
       </View>
+      
     </View>
   );
 };

@@ -45,6 +45,10 @@ export default function App() {
     setScannedData(data);
   };
 
+  const backToWelcomeHandler = () => {
+    setScannedData('');
+  };
+
   let content = <LoginScreen loginHandler={loginHandler} />;
 
   if (user) {
@@ -52,7 +56,13 @@ export default function App() {
   }
   if (user && scannedData) {
     // createData(scannedData);
-    content = <ShowDetailScreen data={scannedData} />;
+    content = (
+      <ShowDetailScreen
+        volunteerId={scannedData}
+        backToWelcome={backToWelcomeHandler}
+        userData = {user}
+      />
+    );
   }
 
   return (

@@ -8,6 +8,7 @@ const LoginScreen = (props) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
+
   const authListener = () => {
     firebaseConfig.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -39,7 +40,7 @@ const LoginScreen = (props) => {
     if (email && password) {
       firebaseConfig
         .auth()
-        .WithEmailAndPassword(email, password)
+        .signInWithEmailAndPassword(email, password)
         .catch((error) => {
           if (error) {
             Alert.alert("Try Again!", error.message, [
@@ -49,6 +50,8 @@ const LoginScreen = (props) => {
         });
     }
   };
+
+  
 
   return (
     <View style={styles.screen}>
@@ -96,13 +99,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputContainer: {
-    justifyContent: "center", 
+    justifyContent: "center",
   },
   title: {
-      fontSize: 20,
-      fontWeight: "400",
-      padding: 8,
-      marginBottom: 10,
+    fontSize: 20,
+    fontWeight: "400",
+    padding: 8,
+    marginBottom: 10,
   },
   buttonContainer: {
     flexDirection: "row",
