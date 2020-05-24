@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-const FormDisplay = (props) => {
-    const labsAccessed = props.volunteerData.labsAccessed;
-    console.log(props.volunteerData.length);
+const FormDisplay = (volunteerData, currentLab, labsAccessed) => {
+    // const labsAccessed = volunteerData.labsAccessed;
+    console.log(labsAccessed);
     
     return (
         <View>
