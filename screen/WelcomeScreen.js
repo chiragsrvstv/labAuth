@@ -26,10 +26,10 @@ const WelcomeScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>Welcome Technician:1</Text>
+      
       {scanClick ? <CameraScanner onScanData={fetchDataFromScanner} /> : null}
       <Card style={styles.cardContainer}>
-        <Text> Scanner </Text>
+        <Text style={styles.title} > Scanner </Text>
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
             <Button
@@ -53,7 +53,7 @@ const WelcomeScreen = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
-    flex: 1,
+    flex: 5,
     padding: 15,
     alignItems: "center",
   },

@@ -1,52 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import Header from "./components/Header";
+import NavBar from "./components/NavBar";
 import LoginScreen from "./screen/LoginScreen";
 import WelcomeScreen from "./screen/WelcomeScreen";
 import ShowDetailScreen from "./screen/ShowDetailScreen";
 
-// Firestore setup
-import * as firebase from "firebase";
-import firebaseConfig from "../constants/firebaseConfig";
-
-// Optionally import the services that you want to use
-// import "firebase/auth";
-// import "firebase/database";
-// import "firebase/firestore";
-//import "firebase/functions";
-//import "firebase/storage";
-
-// Initializing Firebase
-
-firebase.initializeApp(firebaseConfig);
-var database = firebase.database();
-
-const dbCheck = (labname) => {
-  database.ref("labs/");
-};
+//  var labRef = firebase.database().ref().child('lab');
+//  var technicianRef = firebase.database().ref().child('technician');
+//  var volunteerRef = firebase.database().ref().child('volunteer');
 
 export default function App() {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  // useEffect(() => {
+  //   labRef.on('value', snap => {
+  //     console.log(snap.val());
+  //   })
+  // }, []);
+
+  // const createData = (data) => {
+  //   volunteerRef.child('id').set(JSON.stringify(data), error => {
+  //     if(error) {
+  //       console.log(error);
+  //       console.log(Failed);
+  //     } else {
+  //       console.log("Write Success");
+
+  //     }
+  //   });
+  // }
+
+  const [user, setUser] = useState("");
   const [scannedData, setScannedData] = useState("");
+
+  const loginHandler = (data) => {
+    setUser(data);
+  };
+
+  const logOutHandler = () => {
+    setUser(null);
+  };
 
   const scannedDataHandler = (data) => {
     setScannedData(data);
   };
 
-  let content = <LoginScreen isUserLoggedIn={isUserLoggedIn} />;
+  let content = <LoginScreen loginHandler={loginHandler} />;
 
-  if (isUserLoggedIn) {
+  if (user) {
     content = <WelcomeScreen scannedDataHandler={scannedDataHandler} />;
   }
-  if (isUserLoggedIn && scannedData) {
-    dbCheck("a");
+  if (user && scannedData) {
+    // createData(scannedData);
     content = <ShowDetailScreen data={scannedData} />;
   }
 
   return (
     <View style={styles.screen}>
-      <Header title={"Lab Authenticator"} />
+      <Header title={"Lab Authenticator"} userData={user} />
+      {user ? <NavBar userData={user} logOutHandler={logOutHandler} /> : null}
       {content}
     </View>
   );
