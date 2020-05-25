@@ -84,9 +84,7 @@ const ShowDetailScreen = (props) => {
       console.log(volunteerData);
       return (
         <View style={styles.screen}>
-          <Text style={styles.title}>
-            Welcome
-          </Text>
+          <Text style={styles.title}>Welcome</Text>
           <Text>
             {" "}
             First Time Visiting this lab, No other labs visited in the past{" "}
@@ -110,7 +108,7 @@ const ShowDetailScreen = (props) => {
               editable={false}
             />
             <Input
-              label={"Duration"}
+              label={"Duration Minutes"}
               onChangeText={OnInputDuration}
               value={inputDuration.toString()}
               placeHolder="Duration"
@@ -149,13 +147,47 @@ const ShowDetailScreen = (props) => {
         </View>
       );
     } else if (volunteerData.labsAccessed.hasOwnProperty(currentLab.lab)) {
-      const history = volunteerData.labsAccessed[currentLab.lab];
-      console.log(history);
+      const history = volunteerData.labsAccessed;
+      const labsVisited = [];
+      const labsDate = [];
+      let content;
+      let reasons = [];
+      // console.log(labsVisited);
+
+      for (const value of Object.values(history)) {
+        labsVisited.push(value);
+      }
+      labsVisited.map((item) => {
+        labsDate.push(Object.keys(item));
+      });
+      console.log(labsDate);
+
+      content = <Text>{labsDate}</Text>;
+
+      // for (var x = 0; x < history.length; x++) {
+      //   for (var i = 0; i < labsDate.length; i++) {
+      //     reasons.push(history[x][i]);
+      //   }
+      // }
+      const cur = currentLab.lab;
+      const fin = history[cur];
+      const val = content;
+      console.log(fin);
+      for (const value of Object.values(fin)) {
+        reasons.push(value.reason);
+      }
+
+      //   const h = history.keys();
+      //   console.log(history.isFrozen());
+
       return (
         <View style={styles.screen}>
-          <Text style={styles.title}>
-            Visited this lab on
-          </Text>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>Visited this lab on {content} </Text>
+          </View>
+
+          <Text style={styles.title}>Lab Visited for Reasons: {reasons}</Text>
+
           <ScrollView style={styles.inputContainer}>
             <Input
               label={"Lab Id"}
@@ -175,7 +207,7 @@ const ShowDetailScreen = (props) => {
               editable={false}
             />
             <Input
-              label={"Duration"}
+              label={"Duration Minutes"}
               onChangeText={OnInputDuration}
               value={inputDuration.toString()}
               placeHolder="Duration"
@@ -215,10 +247,47 @@ const ShowDetailScreen = (props) => {
           </View>
         </View>
       );
-    } else {        
+    } else {
+      const history = volunteerData.labsAccessed;
+      const labsVisited = [];
+      const labsDate = [];
+      let content;
+      let reasons = [];
+      // console.log(labsVisited);
+
+      for (const value of Object.values(history)) {
+        labsVisited.push(value);
+      }
+      labsVisited.map((item) => {
+        labsDate.push(Object.keys(item));
+      });
+      console.log(labsDate);
+
+      content = <Text>{labsDate}</Text>;
+
+      // for (var x = 0; x < history.length; x++) {
+      //   for (var i = 0; i < labsDate.length; i++) {
+      //     reasons.push(history[x][i]);
+      //   }
+      // }
+      const cur = currentLab.lab;
+      const fin = history[cur];
+      const val = content;
+      console.log(fin);
+      for (const value of Object.values(fin)) {
+        reasons.push(value.reason);
+      }
+
+      // console.log(reasons);
+
       return (
-        <View style={styles.screen} >
-          <Text style={styles.title} >First Time Visiting this lab</Text>
+        <View style={styles.screen}>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>Visited this lab on {content} </Text>
+          </View>
+
+          <Text style={styles.title}>Lab Visited for Reasons: {reasons}</Text>
+
           <ScrollView style={styles.inputContainer}>
             <Input
               label={"Lab Id"}
@@ -238,7 +307,7 @@ const ShowDetailScreen = (props) => {
               editable={false}
             />
             <Input
-              label={"Duration"}
+              label={"Duration Minutes"}
               onChangeText={OnInputDuration}
               value={inputDuration}
               placeHolder="Duration"
@@ -323,5 +392,9 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "40%",
+  },
+  textContainer: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
