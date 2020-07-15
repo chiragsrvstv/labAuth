@@ -1,0 +1,8 @@
+Coding Cult:
+
+Use Case 2: /codingCult/labAuth (React Native Application, do `npm install`)
+
+Screenshots of live demo (If Any): 
+
+Note: 
+**File mentioned in screenshots of Use Cases should be inside this repository only.
