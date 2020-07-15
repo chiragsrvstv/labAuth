@@ -1,5 +1,5 @@
 # Lab Authenticator
-### This app solves the Usecase 2, see [this file](PCTUseCasesforCollegesv2.pdf)
+### This app solves the Usecase 2, see [this file](https://github.com/chiragsrvstv/labAuth/blob/master/PCTUseCases%20forCollegesv2.pdf)
 
 ![Alt Text](https://media.giphy.com/media/iIMJMWdzCNnCjQxPTR/source.gif)
 
