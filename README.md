@@ -1,5 +1,5 @@
 # Lab Authenticator
-### UseCase2
+### This app solves the Usecase 2, see [this file](PCTUseCasesforCollegesv2.pdf)
 
 ![Alt Text](https://media.giphy.com/media/iIMJMWdzCNnCjQxPTR/source.gif)
 
@@ -15,13 +15,15 @@ So before starting the project do consider theses installation instructions:
 3. Install expo-cli using npm install -g expo-cli
 4. Create a file named firebaseConfig.js inside constants folder and paste in your own FireBase credentialsthat you get after creating your account on Firebase.
 The file should be structured exactly like this: <br>
-`import * as firebase from "firebase";` 
-`const config = { apiKey: "***YOUR_KEY",`
-`authDomain:"***YOUR_PROJECT_DOMAIN",` 
-`databaseURL: "***YOUR_DB_URL***", `
-`projectId: ""***PROJECT_ID***"",` 
-`appId:"**APP_ID***", }; `
-`firebaseConfig = firebase.initializeApp(config); export default firebaseConfig;`
+```jsx
+import * as firebase from "firebase"; 
+const config = { apiKey: "***YOUR_KEY",
+authDomain:"***YOUR_PROJECT_DOMAIN"` 
+databaseURL: "***YOUR_DB_URL***", 
+projectId: ""***PROJECT_ID***"", 
+appId:"**APP_ID***", }; 
+firebaseConfig = firebase.initializeApp(config); export default firebaseConfig;
+```
 For help visit: https://firebase.google.com/
 5. For starting the app after completing the above steps, run: `npm start` 
 to open up the expo-client in the browser then scan the QR code to download and run the application locally on your IOS/Android devices or emulators.
@@ -39,6 +41,7 @@ schema for the proper functioning of the Application.
 
 Schema Example(Refer to `/screenshots` folder):
 
+```json
 {
   "labs" : {
     "10" : {
@@ -124,3 +127,4 @@ Schema Example(Refer to `/screenshots` folder):
     }
   }
 }
+```
